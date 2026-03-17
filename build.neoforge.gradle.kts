@@ -19,6 +19,10 @@ platform {
 			slug("fzzy-config")
 			forgeVersionRange = "[0,)"
 		}
+		optional("fishnostuck") {
+			slug("fish-no-stuck")
+			forgeVersionRange = "[0,)"
+		}
 	}
 }
 
@@ -32,6 +36,22 @@ stonecutter {
 	replacements.string {
 		direction = dir
 		replace("ResourceLocation", "Identifier")
+	}
+	replacements.string {
+		direction = dir
+		replace("net.minecraft.world.entity.animal.AbstractFish", "net.minecraft.world.entity.animal.fish.AbstractFish")
+	}
+	replacements.string {
+		direction = dir
+		replace("net.minecraft.world.entity.animal.AbstractSchoolingFish", "net.minecraft.world.entity.animal.fish.AbstractSchoolingFish")
+	}
+	replacements.string {
+		direction = dir
+		replace("net.minecraft.world.entity.animal.WaterAnimal", "net.minecraft.world.entity.animal.fish.WaterAnimal")
+	}
+	replacements.string {
+		direction = dir
+		replace("Lnet/minecraft/world/entity/animal/AbstractFish;", "Lnet/minecraft/world/entity/animal/fish/AbstractFish;")
 	}
 }
 
@@ -85,11 +105,10 @@ repositories {
 }
 
 dependencies {
-	implementation( "me.fzzyhmstrs:fzzy_config:${prop("deps.fzzy_config")}+neoforge")
-	implementation("com.moulberry:mixinconstraints:${prop("deps.mixinconstraints")}")
-	jarJar("com.moulberry:mixinconstraints:${prop("deps.mixinconstraints")}")
-	implementation("com.github.ramixin:mixson-neoforge:${prop("deps.mixson")}")
-	jarJar("com.github.ramixin:mixson-neoforge:${prop("deps.mixson")}")
+	implementation("me.fzzyhmstrs:fzzy_config:${prop("deps.fzzy_config")}+neoforge")
+
+	//runtimeOnly("maven.modrinth:sodium:${prop("runtime.sodium")}")
+	runtimeOnly("maven.modrinth:fish-no-stuck:${prop("runtime.fns")}")
 }
 
 tasks.named("createMinecraftArtifacts") {

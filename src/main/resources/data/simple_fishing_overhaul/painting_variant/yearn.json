@@ -1,0 +1,13 @@
+{
+  "asset_id": "simple_fishing_overhaul:yearn",
+  "author": {
+    "color": "gray",
+    "translate": "painting.simple_fishing_overhaul.yearn.author"
+  },
+  "height": 4,
+  "title": {
+    "color": "yellow",
+    "translate": "painting.simple_fishing_overhaul.yearn.title"
+  },
+  "width": 4
+}

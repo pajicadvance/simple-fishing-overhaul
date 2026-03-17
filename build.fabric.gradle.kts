@@ -26,6 +26,9 @@ platform {
 		optional("modmenu") {
 			slug("modmenu")
 		}
+		optional("fishnostuck") {
+			slug("fish-no-stuck")
+		}
 	}
 }
 
@@ -59,6 +62,22 @@ stonecutter {
 		direction = dir
 		replace("ResourceLocation", "Identifier")
 	}
+	replacements.string {
+		direction = dir
+		replace("net.minecraft.world.entity.animal.AbstractFish", "net.minecraft.world.entity.animal.fish.AbstractFish")
+	}
+	replacements.string {
+		direction = dir
+		replace("net.minecraft.world.entity.animal.AbstractSchoolingFish", "net.minecraft.world.entity.animal.fish.AbstractSchoolingFish")
+	}
+	replacements.string {
+		direction = dir
+		replace("net.minecraft.world.entity.animal.WaterAnimal", "net.minecraft.world.entity.animal.fish.WaterAnimal")
+	}
+	replacements.string {
+		direction = dir
+		replace("Lnet/minecraft/world/entity/animal/AbstractFish;", "Lnet/minecraft/world/entity/animal/fish/AbstractFish;")
+	}
 }
 
 fletchingTable {
@@ -91,12 +110,7 @@ dependencies {
 	modImplementation("net.fabricmc.fabric-api:fabric-api:${prop("deps.fabric-api")}")
 	modImplementation("me.fzzyhmstrs:fzzy_config:${prop("deps.fzzy_config")}")
 	modImplementation("com.terraformersmc:modmenu:${prop("deps.modmenu")}")
-	implementation("com.moulberry:mixinconstraints:${prop("deps.mixinconstraints")}")
-	include("com.moulberry:mixinconstraints:${prop("deps.mixinconstraints")}")
-	modImplementation("com.github.ramixin:mixson-fabric:${prop("deps.mixson")}") {
-		exclude(group = "net.fabricmc.fabric-api", module = "fabric-api")
-	}
-	include("com.github.ramixin:mixson-fabric:${prop("deps.mixson")}") {
-		exclude(group = "net.fabricmc.fabric-api", module = "fabric-api")
-	}
+
+	modRuntimeOnly("maven.modrinth:sodium:${prop("runtime.sodium")}")
+	modRuntimeOnly("maven.modrinth:fish-no-stuck:${prop("runtime.fns")}")
 }
