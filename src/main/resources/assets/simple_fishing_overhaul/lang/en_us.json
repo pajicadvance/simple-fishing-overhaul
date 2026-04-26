@@ -1,0 +1,19 @@
+{
+  "simple_fishing_overhaul.config": "Simple Fishing Overhaul Configuration",
+  "simple_fishing_overhaul.config.catchRadius": "Catch radius",
+  "simple_fishing_overhaul.config.catchRadius.desc": "Radius in blocks around the bobber in which fish can be caught.",
+  "simple_fishing_overhaul.config.intrigueChance": "Intrigue chance",
+  "simple_fishing_overhaul.config.intrigueChance.desc": "Chance for fish to get intrigued by the bobber and move towards it. The Lure enchantment increases this chance by up to two times.",
+  "simple_fishing_overhaul.config.intrigueRadius": "Intrigue radius",
+  "simple_fishing_overhaul.config.intrigueRadius.desc": "Radius around the bobber where fish can become intrigued by it. The Lure enchantment increases this radius by up to two times.",
+  "simple_fishing_overhaul.config.netheriteFishingRod": "Enable Netherite Fishing Rod",
+  "simple_fishing_overhaul.config.fishDropNoLoot": "No loot from killing fish",
+  "simple_fishing_overhaul.config.fishDropNoLoot.desc": "Prevents fish which were killed by the player from dropping any loot.",
+  "simple_fishing_overhaul.config.allowFishingWithoutFish": "Allow fishing in empty waters",
+  "simple_fishing_overhaul.config.allowFishingWithoutFish.desc": "Allows fishing in waters with no fish inside to obtain junk or treasure.",
+
+  "painting.simple_fishing_overhaul.yearn.title": "yearn",
+  "painting.simple_fishing_overhaul.yearn.author": "k2comix",
+
+  "item.simple_fishing_overhaul.netherite_fishing_rod": "Netherite Fishing Rod"
+}
