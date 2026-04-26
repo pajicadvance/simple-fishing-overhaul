@@ -28,7 +28,8 @@ You can also upgrade the regular fishing rod to a Netherite Fishing Rod in the s
 ## Compatibility
 
 - Compatible with any modded entity that is considered an `AbstractFish` with a loot table assigned to it.
-- Modded fishing rods are compatible as long as they cast the vanilla fishing bobber.
+- Modded fishing rods are compatible as long as they extend the vanilla `FishingRodItem`.
+- Mods that change the behavior of the vanilla fishing rod are NOT compatible.
 - If a mod adds fish items to the fishing loot table without adding the corresponding fish entities, those fish items will be unobtainable.
 
 ## Configuration
