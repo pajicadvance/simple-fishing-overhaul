@@ -1,7 +1,6 @@
 package me.pajic.simple_fishing_overhaul.hud;
 
 import me.pajic.simple_fishing_overhaul.SFO;
-import me.pajic.simple_fishing_overhaul.util.PlayerExtension;
 import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
@@ -29,7 +28,7 @@ public class FishingRodCastBarRenderer implements ContextualBarRenderer {
 			int left = left(minecraft.getWindow());
 			int top = top(minecraft.getWindow());
 			graphics.blitSprite(RenderPipelines.GUI_TEXTURED, SFO.id("hud/cast_bar_background"), left, top, 182, 5);
-			int progress = Mth.lerpDiscrete(1 - (float) ((PlayerExtension) minecraft.player).sfo$getRemainingCastTime() / 60, 0, 182);
+			int progress = Mth.lerpDiscrete(1 - (float) (minecraft.player.getUseItemRemainingTicks() - 1) / 60, 0, 182);
 			if (progress > 0) {
 				graphics.blitSprite(RenderPipelines.GUI_TEXTURED, SFO.id("hud/cast_bar_progress"), 182, 5, 0, 0, left, top, progress, 5);
 			}

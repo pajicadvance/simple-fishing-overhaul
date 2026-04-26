@@ -12,7 +12,6 @@ import me.pajic.simple_fishing_overhaul.SFO;
 import me.pajic.simple_fishing_overhaul.item.ModItems;
 import me.pajic.simple_fishing_overhaul.util.AbstractFishExtension;
 import me.pajic.simple_fishing_overhaul.util.FishingUtil;
-import me.pajic.simple_fishing_overhaul.util.PlayerExtension;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.resources.Identifier;
@@ -64,7 +63,7 @@ public abstract class FishingHookMixin {
 			)
 	)
 	private Vec3 modifyCastDistance(Vec3 original, @Local(argsOnly = true, name = "player") final Player player) {
-		double scale = Mth.clampedLerp(1 - (double) ((PlayerExtension) player).sfo$getRemainingCastTime() / 60, 0.25, 1.75);
+		double scale = Mth.clampedLerp(1 - (double) (player.getUseItemRemainingTicks() - 1) / 60, 0.25, 1.75);
 		SFO.debugLog("Cast distance scale: {}", scale);
 		return original.multiply(scale, scale, scale);
 	}

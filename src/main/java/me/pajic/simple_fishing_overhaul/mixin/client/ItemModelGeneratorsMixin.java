@@ -1,4 +1,4 @@
-package me.pajic.simple_fishing_overhaul.mixin;
+package me.pajic.simple_fishing_overhaul.mixin.client;
 
 import dev.kikugie.fletching_table.annotation.MixinEnvironment;
 import me.pajic.simple_fishing_overhaul.item.ModItems;

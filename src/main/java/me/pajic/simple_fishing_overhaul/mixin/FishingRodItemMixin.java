@@ -11,7 +11,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.FishingRodItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.ItemUseAnimation;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 import org.spongepowered.asm.mixin.Mixin;
@@ -57,17 +56,9 @@ public abstract class FishingRodItemMixin extends Item {
 
 	@Override
 	public void onUseTick(@NotNull Level level, @NotNull LivingEntity livingEntity, @NotNull ItemStack itemStack, int ticksRemaining) {
-		if (livingEntity instanceof Player player) {
-			((PlayerExtension) player).sfo$setRemainingCastTime(ticksRemaining - 1);
-			if (ticksRemaining == 1) {
-				player.releaseUsingItem();
-				player.getCooldowns().addCooldown(itemStack, 30);
-			}
+		if (livingEntity instanceof Player player && ticksRemaining == 1) {
+			player.releaseUsingItem();
+			player.getCooldowns().addCooldown(itemStack, 30);
 		}
-	}
-
-	@Override
-	public @NotNull ItemUseAnimation getUseAnimation(@NotNull ItemStack itemStack) {
-		return ItemUseAnimation.BOW;
 	}
 }
