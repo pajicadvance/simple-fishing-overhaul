@@ -19,6 +19,10 @@ public class ModConfig extends Config {
 	public ValidatedDouble catchRadius = new ValidatedDouble(2, 4, 1);
 	public ValidatedFloat intrigueChance = new ValidatedFloat(0.33F, 1, 0);
 	public ValidatedDouble intrigueRadius = new ValidatedDouble(3.5, 8, 2);
+	public ValidatedFloat lureBonusMultiplier = new ValidatedFloat(1.67F, 2, 1);
+	public ValidatedBoolean castCharging = new ValidatedBoolean();
+	public ValidatedDouble minCastDistanceMultiplier = new ValidatedDouble(0.25, 1, 0.1);
+	public ValidatedDouble maxCastDistanceMultiplier = new ValidatedDouble(1.75, 2.5, 1);
 	@RequiresAction(action = Action.RESTART) public ValidatedBoolean netheriteFishingRod = new ValidatedBoolean();
 	public ValidatedBoolean fishDropNoLoot = new ValidatedBoolean();
 	public ValidatedBoolean allowFishingWithoutFish = new ValidatedBoolean(false);

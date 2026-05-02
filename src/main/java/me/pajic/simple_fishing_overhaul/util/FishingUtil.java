@@ -1,5 +1,6 @@
 package me.pajic.simple_fishing_overhaul.util;
 
+import me.pajic.simple_fishing_overhaul.SFO;
 import net.minecraft.world.entity.animal.fish.AbstractFish;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.FishingHook;
@@ -23,6 +24,6 @@ public class FishingUtil {
     }
 
 	public static boolean shouldChargeCast(Player player) {
-		return !((PlayerExtension) player).sfo$getShouldCastFishingRod() && (player.fishing == null || player.fishing.isRemoved());
+		return SFO.CONFIG.castCharging.get() && !((PlayerExtension) player).sfo$getShouldCastFishingRod() && (player.fishing == null || player.fishing.isRemoved());
 	}
 }

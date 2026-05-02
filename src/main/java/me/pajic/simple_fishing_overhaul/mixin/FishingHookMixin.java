@@ -63,9 +63,16 @@ public abstract class FishingHookMixin {
 			)
 	)
 	private Vec3 modifyCastDistance(Vec3 original, @Local(argsOnly = true, name = "player") final Player player) {
-		double scale = Mth.clampedLerp(1 - (double) (player.getUseItemRemainingTicks() - 1) / 60, 0.25, 1.75);
-		SFO.debugLog("Cast distance scale: {}", scale);
-		return original.multiply(scale, scale, scale);
+		if (SFO.CONFIG.castCharging.get()) {
+			double scale = Mth.clampedLerp(
+					1 - (double) (player.getUseItemRemainingTicks() - 1) / 60,
+					SFO.CONFIG.minCastDistanceMultiplier.get(),
+					SFO.CONFIG.maxCastDistanceMultiplier.get()
+			);
+			SFO.debugLog("Cast distance scale: {}", scale);
+			return original.multiply(scale, scale, scale);
+		}
+		return original;
 	}
 
     @SuppressWarnings("resource")
@@ -79,7 +86,7 @@ public abstract class FishingHookMixin {
             )
     )
     private void onHookHitWater(CallbackInfo ci) {
-		float lureMult = Mth.lerp(Mth.clamp((float) lureSpeed / 300, 0, 1), 1, 1.67F);
+		float lureMult = Mth.lerp(Mth.clamp((float) lureSpeed / 300, 0, 1), 1, SFO.CONFIG.lureBonusMultiplier.get());
 		sfo$lured = FishingUtil.getEligibleFish(sfo$HOOK, SFO.CONFIG.intrigueRadius.get() * lureMult);
 		SFO.debugLog("{} fish in range", sfo$lured.size());
 		sfo$lured.forEach(fish -> {

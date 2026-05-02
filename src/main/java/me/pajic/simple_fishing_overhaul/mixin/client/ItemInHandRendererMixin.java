@@ -4,6 +4,7 @@ import com.llamalad7.mixinextras.sugar.Local;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import dev.kikugie.fletching_table.annotation.MixinEnvironment;
+import me.pajic.simple_fishing_overhaul.SFOClient;
 import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.client.renderer.ItemInHandRenderer;
 import net.minecraft.client.renderer.SubmitNodeCollector;
@@ -41,7 +42,7 @@ public abstract class ItemInHandRendererMixin {
 			CallbackInfo ci,
 			@Local(name = "arm") HumanoidArm arm
 	) {
-		if (itemStack.getItem() instanceof FishingRodItem && player.isUsingItem() && (player.getUseItemRemainingTicks() - 1) > 0 && player.getUsedItemHand() == hand) {
+		if (SFOClient.CONFIG.customFirstPersonAnimation.get() && itemStack.getItem() instanceof FishingRodItem && player.isUsingItem() && (player.getUseItemRemainingTicks() - 1) > 0 && player.getUsedItemHand() == hand) {
 			int invert = arm == HumanoidArm.RIGHT ? 1 : -1;
 			poseStack.translate(invert * -0.2785682F, 0.18344387F, 0.15731531F);
 			poseStack.mulPose(Axis.XP.rotationDegrees(-13.935F));

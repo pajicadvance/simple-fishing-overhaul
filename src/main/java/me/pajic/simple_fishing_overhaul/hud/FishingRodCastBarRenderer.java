@@ -1,6 +1,7 @@
 package me.pajic.simple_fishing_overhaul.hud;
 
 import me.pajic.simple_fishing_overhaul.SFO;
+import me.pajic.simple_fishing_overhaul.SFOClient;
 import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
@@ -24,7 +25,7 @@ public class FishingRodCastBarRenderer implements ContextualBarRenderer {
 
 	@Override
 	public void extractBackground(@NotNull final GuiGraphicsExtractor graphics, @NotNull final DeltaTracker deltaTracker) {
-		if (minecraft.player != null && minecraft.player.getUseItem().getItem() instanceof FishingRodItem) {
+		if (SFOClient.CONFIG.castBar.get() && minecraft.player != null && minecraft.player.getUseItem().getItem() instanceof FishingRodItem) {
 			int left = left(minecraft.getWindow());
 			int top = top(minecraft.getWindow());
 			graphics.blitSprite(RenderPipelines.GUI_TEXTURED, SFO.id("hud/cast_bar_background"), left, top, 182, 5);

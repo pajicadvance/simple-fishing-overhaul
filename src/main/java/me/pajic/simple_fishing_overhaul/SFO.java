@@ -23,6 +23,10 @@ public class SFO {
 
 	public static void onInitialize() {}
 
+	public static void onInitializeClient() {
+		SFOClient.init();
+	}
+
 	public static Platform xplat() {
 		return PLATFORM;
 	}

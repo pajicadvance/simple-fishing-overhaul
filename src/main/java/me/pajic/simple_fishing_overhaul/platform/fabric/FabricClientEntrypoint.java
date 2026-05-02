@@ -14,6 +14,7 @@ public class FabricClientEntrypoint implements ClientModInitializer {
 
 	@Override
 	public void onInitializeClient() {
+		SFO.onInitializeClient();
 		initHudLayers();
 	}
 

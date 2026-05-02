@@ -3,6 +3,7 @@ package me.pajic.simple_fishing_overhaul.mixin.client;
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import com.llamalad7.mixinextras.sugar.Local;
 import dev.kikugie.fletching_table.annotation.MixinEnvironment;
+import me.pajic.simple_fishing_overhaul.SFOClient;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.renderer.entity.state.HumanoidRenderState;
 import net.minecraft.util.Mth;
@@ -10,6 +11,7 @@ import net.minecraft.world.entity.HumanoidArm;
 import net.minecraft.world.item.FishingRodItem;
 import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -23,7 +25,7 @@ public abstract class HumanoidModelMixin<T extends HumanoidRenderState> {
 			at = @At("TAIL")
 	)
 	private void fishingRodRightArmPose(T state, CallbackInfo ci) {
-		if (state.rightArmPose == HumanoidModel.ArmPose.ITEM && state.rightHandItemStack.getItem() instanceof FishingRodItem) {
+		if (sfo$animate() && state.rightArmPose == HumanoidModel.ArmPose.ITEM && state.rightHandItemStack.getItem() instanceof FishingRodItem) {
 			float castUseTicks = state.ticksUsingItem(HumanoidArm.RIGHT);
 			if (castUseTicks > 0) {
 				float armXModifier = Mth.clampedLerp(castUseTicks / 60, 0, 1);
@@ -41,7 +43,7 @@ public abstract class HumanoidModelMixin<T extends HumanoidRenderState> {
 			at = @At("TAIL")
 	)
 	private void fishingRodLeftArmPose(T state, CallbackInfo ci) {
-		if (state.leftArmPose == HumanoidModel.ArmPose.ITEM && state.leftHandItemStack.getItem() instanceof FishingRodItem) {
+		if (sfo$animate() && state.leftArmPose == HumanoidModel.ArmPose.ITEM && state.leftHandItemStack.getItem() instanceof FishingRodItem) {
 			float castUseTicks = state.ticksUsingItem(HumanoidArm.LEFT);
 			if (castUseTicks > 0) {
 				float armXModifier = Mth.clampedLerp(castUseTicks / 60, 0, 1);
@@ -63,7 +65,7 @@ public abstract class HumanoidModelMixin<T extends HumanoidRenderState> {
 			)
 	)
 	private HumanoidModel.ArmPose fishingRodRightArmCheck(HumanoidModel.ArmPose original, @Local(argsOnly = true, name = "state") final T state) {
-		return state.rightHandItemStack.getItem() instanceof FishingRodItem ? HumanoidModel.ArmPose.BOW_AND_ARROW : original;
+		return sfo$animate() && state.rightHandItemStack.getItem() instanceof FishingRodItem ? HumanoidModel.ArmPose.BOW_AND_ARROW : original;
 	}
 
 	@ModifyExpressionValue(
@@ -75,6 +77,10 @@ public abstract class HumanoidModelMixin<T extends HumanoidRenderState> {
 			)
 	)
 	private HumanoidModel.ArmPose fishingRodLeftArmCheck(HumanoidModel.ArmPose original, @Local(argsOnly = true, name = "state") final T state) {
-		return state.leftHandItemStack.getItem() instanceof FishingRodItem ? HumanoidModel.ArmPose.BOW_AND_ARROW : original;
+		return sfo$animate() && state.leftHandItemStack.getItem() instanceof FishingRodItem ? HumanoidModel.ArmPose.BOW_AND_ARROW : original;
+	}
+
+	@Unique private boolean sfo$animate() {
+		return SFOClient.CONFIG.customThirdPersonAnimation.get();
 	}
 }
