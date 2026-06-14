@@ -22,7 +22,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class ItemInHandRendererMixin {
 
 	@Inject(
-			method = "renderArmWithItem",
+			method = /*? if 26.1.2 {*//*"renderArmWithItem"*//*?} else {*/"submitArmWithItem"/*?}*/,
 			at = @At(
 					value = "INVOKE",
 					target = "Lnet/minecraft/client/renderer/ItemInHandRenderer;renderItem(Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemDisplayContext;Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/SubmitNodeCollector;I)V"

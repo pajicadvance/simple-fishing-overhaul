@@ -5,13 +5,13 @@ import me.pajic.simple_fishing_overhaul.SFOClient;
 import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
-import net.minecraft.client.gui.contextualbar.ContextualBarRenderer;
+import net.minecraft.client.gui.contextualbar.ContextualBar;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.util.Mth;
 import net.minecraft.world.item.FishingRodItem;
 import org.jetbrains.annotations.NotNull;
 
-public class FishingRodCastBarRenderer implements ContextualBarRenderer {
+public class FishingRodCastBarRenderer implements ContextualBar {
 	private static FishingRodCastBarRenderer INSTANCE;
 	private final Minecraft minecraft = Minecraft.getInstance();
 
