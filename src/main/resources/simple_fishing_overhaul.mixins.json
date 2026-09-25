@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "package": "me.pajic.simple_fishing_overhaul.mixin",
+  "minVersion": "0.8",
+  "mixinextras": {"minVersion": "0.5.0"},
+  "compatibilityLevel": "${java}",
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
+  },
+  "mixins": [],
+  "client": []
+}

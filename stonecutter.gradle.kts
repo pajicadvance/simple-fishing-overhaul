@@ -35,6 +35,9 @@ stonecutter parameters {
 
     replacements {
         filters.exclude("**/*.ct")
+        string(current.parsed > "26.1.2") {
+            replace("ContextualBarRenderer", "ContextualBar")
+        }
         string(current.parsed >= "1.21.11") {
             replace("ValidatedIdentifier", "ValidatedIdentifier")
             replace("ResourceLocation", "Identifier")

@@ -1,33 +1,43 @@
-# Multicutter
+# Simple Fishing Overhaul
 
-Based on [Stonecutter Fabric & NeoForge template](https://github.com/stonecutter-versioning/stonecutter-template-multiloader)
+Ever thought that it's weird that when fishing, you aren't fishing the actual fish that are physically in the water? Even weirder, you can kill said fish to get them as an item, so what's the point of using the fishing rod and waiting when you can just go in the water and do that instead?
 
-- Multiloader and multiversion management with helper classes
-- Supports both obfuscated and unobfuscated game versions
-- Dependency handling using Stonecutter versioned properties
-- Versioned class tweakers and access transformers
-- Automatic Mixin and entrypoint registration
-- Automated Modrinth and CurseForge publishing
+This mod makes it so that when you fish using a fishing rod, you are **fishing the actual fish that are in the water**, not some imaginary fish. It also overhauls the process of fishing and the way other loot such as junk or treasure is obtained to accommodate the change.
 
-### Pre-configured content
+- In order to catch fish, they need to be in a certain range of the bobber.
+- Hold right-click to charge the fishing rod - the longer you charge, the farther the hook gets thrown.
+- When the bobber starts splashing, a random nearby fish will get caught on the hook, and reeling in gives you the items that you would get if you killed the fish.
+- When the bobber hits the water, fish have a small chance to become intrigued by it and move towards it, keeping them in range for the catch.
+- The Lure enchantment increases the chance for fish to be intrigued by the bobber.
+- You cannot fish anything if there are no fish in the water.
+- You can get junk or treasure alongside fish catches with vanilla drop rates.
+- If you try killing the fish with a weapon, they drop nothing.
 
-- Versions:
-    - 1.21.1 Fabric and NeoForge
-    - 26.1.2 Fabric and NeoForge
-    - 26.2 Fabric and NeoForge
-- Dependencies:
-    - Fabric API (required)
-    - Fzzy Config (required)
-    - Mixson (required)
-    - MixinConstraints (JiJ-d)
-    - Sodium (runtime)
+These changes do indirectly make treasure fishing less effective, as you can no longer fish in empty waters at all. However, a config option is provided to allow fishing in empty waters, which allows fishing for junk and treasure without fish being present.
 
-No instructions on how to use this yet. If you do want to try it out, the only big difference compared to other templates is that dependencies are declared inside `stonecutter.properties.toml` and not manually inside the build scripts. You only need to add repositories to the build scripts. You can see how pre-configured dependencies are added as examples.
+You can also upgrade the regular fishing rod to a Netherite Fishing Rod in the smithing table, which makes it fireproof and increases its durability.
 
-Tooling used:
-- [Fabric Loom](https://github.com/FabricMC/fabric-loom): Used for the Fabric build script
-- [ModDevGradle](https://github.com/neoforged/ModDevGradle): Used for the NeoForge build script
-- [Stonecutter](https://stonecutter.kikugie.dev/): Multiloader and multiversion handling
-- [Loom Backwards Compatibility](https://codeberg.org/KikuGie/loom-back-compat): Allows the Fabric build script to handle both obfuscated and unobfuscated versions of the game
-- [Fletching Table](https://stonecutter.kikugie.dev/wiki/fletching-table/#fletching-table-overview): Handles automatic mixin and entrypoint registration
-- [Mod Publish Plugin](https://github.com/modmuss50/mod-publish-plugin): Handles automated publishing to Modrinth and CurseForge
+## Requirements
+
+**Fabric**: [Fzzy Config](https://modrinth.com/mod/fzzy-config), [Fabric API](https://modrinth.com/mod/fabric-api), [Mod Menu](https://modrinth.com/mod/modmenu)
+
+**NeoForge**: [Fzzy Config](https://modrinth.com/mod/fzzy-config)
+
+**[Fish No Stuck](https://modrinth.com/mod/fish-no-stuck) is highly recommended** to fix several vanilla bugs causing fish to get stuck.
+
+## Compatibility
+
+- Compatible with any modded entity that is considered an `AbstractFish` with a loot table assigned to it.
+- Modded fishing rods are compatible as long as they extend the vanilla `FishingRodItem`.
+- Mods that change the behavior of the vanilla fishing rod are NOT compatible.
+- If a mod adds fish items to the fishing loot table without adding the corresponding fish entities, those fish items will be unobtainable.
+
+## Configuration
+
+The following can be configured:
+- Catch radius of the bobber
+- Chance for fish to become intrigued by the bobber
+- Radius around the bobber where fish can become intrigued
+- Toggle Netherite Fishing Rod on or off
+- Ability to fish junk or treasure if there are no fish in the water (disabled by default)
+- Ability to kill fish to get their drops (disabled by default)

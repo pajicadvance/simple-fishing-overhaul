@@ -1,0 +1,7 @@
+- Added Fabric 26.3 version.
+- Added NeoForge 26.2 version.
+- Split "Intrigue radius" into two settings and changed defaults:
+  - Intrigue area: The water surface area around the bobber where fish can be intrigued, 3 by default.
+  - Intrigue depth: Depth in blocks under the bobber where fish can be intrigued, 9 by default.
+  - Both values are still increased by Lure, with area being increased up to 1.67x and depth up to 3.34x.
+  - This change makes ocean fishing significantly easier as fish can be intrigued at a greater depth.
