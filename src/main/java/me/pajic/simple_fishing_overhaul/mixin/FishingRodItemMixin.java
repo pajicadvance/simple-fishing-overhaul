@@ -58,7 +58,6 @@ public abstract class FishingRodItemMixin extends Item {
 	public void onUseTick(@NotNull Level level, @NotNull LivingEntity livingEntity, @NotNull ItemStack itemStack, int ticksRemaining) {
 		if (livingEntity instanceof Player player && ticksRemaining == 1) {
 			player.releaseUsingItem();
-			player.getCooldowns().addCooldown(itemStack, 30);
 		}
 	}
 }

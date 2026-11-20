@@ -1,7 +1,20 @@
-- Added Fabric 26.3 version.
-- Added NeoForge 26.2 version.
-- Split "Intrigue radius" into two settings and changed defaults:
-  - Intrigue area: The water surface area around the bobber where fish can be intrigued, 3 by default.
-  - Intrigue depth: Depth in blocks under the bobber where fish can be intrigued, 9 by default.
-  - Both values are still increased by Lure, with area being increased up to 1.67x and depth up to 3.34x.
-  - This change makes ocean fishing significantly easier as fish can be intrigued at a greater depth.
+- Added NeoForge 26.3 version.
+- Reworked how fish get caught to be more visually and mechanically accurate:
+  - A real nearby fish now swims up to the bobber before biting, instead of an imaginary fish trail. Bubbles and a wake follow the fish as it approaches.
+  - Intrigued fish and fish closer to the bobber are more likely to be the ones that bite.
+  - The hooked fish is held under the bobber and struggles while the bobber is splashing, instead of being teleported to it.
+  - If you miss the bite, the fish gets away and ignores bobbers for a while.
+  - Reeling in only gives you the fish if it is still hooked and close to the bobber.
+  - Fish that swim near the bobber after it lands can now also become intrigued. Intrigued fish lose interest after a while and swim away.
+  - Fish chasing the bobber no longer wander off randomly.
+- Named fish and fish released from a bucket can no longer be caught. Protection for released fish can be turned off in the config.
+- When fishing in empty waters is enabled, every catch without a fish now gives junk or treasure, using the vanilla weights between the two. Previously most of these catches gave nothing.
+- Fish with an empty loot table, such as tadpoles, no longer count as fish.
+- Added config options for the intrigue re-roll interval and chance, interest duration, bored duration, intrigued fish weight, approach time limit, bite distance and retry delay.
+- Fixed reeling in a fish that was killed, picked up in a bucket or already caught by another player still giving its loot.
+- Fixed the bobber biting forever if the hooked fish left the catch radius.
+- Fixed one player's bobber clearing fish intrigued by another player's bobber.
+- Fixed the Fish Caught statistic and the "Fishy Business" advancement depending on the vanilla catch instead of the fish you actually caught.
+- Fixed junk and treasure being duplicated when a data pack makes the fishing loot table drop multiple items.
+- Fixed holding a fishing rod in the offhand changing the main arm pose in third person.
+- Clarified that "No loot from killing fish" applies to all fish deaths, and added the missing description for the Netherite Fishing Rod option.

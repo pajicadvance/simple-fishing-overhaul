@@ -63,7 +63,10 @@ public abstract class HumanoidModelMixin<T extends HumanoidRenderState> {
 			)
 	)
 	private HumanoidModel.ArmPose fishingRodRightArmCheck(HumanoidModel.ArmPose original, @Local(argsOnly = true, name = "state") final T state) {
-		return sfo$animate() && state.rightHandItemStack.getItem() instanceof FishingRodItem ? HumanoidModel.ArmPose.BOW_AND_ARROW : original;
+		return sfo$animate() &&
+                state.ticksUsingItem(HumanoidArm.RIGHT) > 0 &&
+                state.rightHandItemStack.getItem() instanceof FishingRodItem ?
+                HumanoidModel.ArmPose.BOW_AND_ARROW : original;
 	}
 
 	@ModifyExpressionValue(
@@ -75,7 +78,10 @@ public abstract class HumanoidModelMixin<T extends HumanoidRenderState> {
 			)
 	)
 	private HumanoidModel.ArmPose fishingRodLeftArmCheck(HumanoidModel.ArmPose original, @Local(argsOnly = true, name = "state") final T state) {
-		return sfo$animate() && state.leftHandItemStack.getItem() instanceof FishingRodItem ? HumanoidModel.ArmPose.BOW_AND_ARROW : original;
+		return sfo$animate() &&
+                state.ticksUsingItem(HumanoidArm.LEFT) > 0 &&
+                state.leftHandItemStack.getItem() instanceof FishingRodItem ?
+                HumanoidModel.ArmPose.BOW_AND_ARROW : original;
 	}
 
 	@Unique private boolean sfo$animate() {

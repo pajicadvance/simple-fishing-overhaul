@@ -1,0 +1,12 @@
+{
+  "required": true,
+  "package": "me.pajic.simple_fishing_overhaul.gametest.mixin",
+  "minVersion": "0.8",
+  "compatibilityLevel": "JAVA_25",
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "mixins": [
+    "FishingHookAccessor"
+  ]
+}

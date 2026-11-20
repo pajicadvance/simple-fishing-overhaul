@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "id": "simple_fishing_overhaul_gametest",
+  "version": "1.0.0",
+  "name": "Simple Fishing Overhaul Game Tests",
+  "environment": "*",
+  "entrypoints": {
+    "fabric-gametest": [
+      "me.pajic.simple_fishing_overhaul.gametest.FishingGameTests"
+    ]
+  },
+  "mixins": [
+    "simple_fishing_overhaul_gametest.mixins.json"
+  ],
+  "depends": {
+    "simple_fishing_overhaul": "*",
+    "fabric-gametest-api-v1": "*"
+  }
+}

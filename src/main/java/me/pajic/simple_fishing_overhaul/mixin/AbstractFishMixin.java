@@ -27,6 +27,8 @@ public abstract class AbstractFishMixin extends WaterAnimal implements AbstractF
 
     @Unique @Nullable private FishingHook sfo$hook = null;
     @Unique private boolean sfo$caught = false;
+    @Unique private long sfo$interestExpiry = 0;
+    @Unique private long sfo$boredUntil = 0;
 
     @Inject(
             method = "registerGoals",
@@ -34,7 +36,7 @@ public abstract class AbstractFishMixin extends WaterAnimal implements AbstractF
     )
     private void addGetCaughtGoal(CallbackInfo ci) {
         AbstractFish fish = (AbstractFish) (Object) this;
-        goalSelector.addGoal(0, new GetCaughtGoal<>(fish));
+        goalSelector.addGoal(-1, new GetCaughtGoal<>(fish));
         goalSelector.addGoal(3, new GetLuredGoal<>(fish));
     }
 
@@ -66,5 +68,25 @@ public abstract class AbstractFishMixin extends WaterAnimal implements AbstractF
     @Override
     public boolean sfo$isCaught() {
         return sfo$caught;
+    }
+
+    @Override
+    public void sfo$setInterestExpiry(long gameTime) {
+        this.sfo$interestExpiry = gameTime;
+    }
+
+    @Override
+    public long sfo$getInterestExpiry() {
+        return sfo$interestExpiry;
+    }
+
+    @Override
+    public void sfo$setBoredUntil(long gameTime) {
+        this.sfo$boredUntil = gameTime;
+    }
+
+    @Override
+    public long sfo$getBoredUntil() {
+        return sfo$boredUntil;
     }
 }
